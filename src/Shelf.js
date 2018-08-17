@@ -3,6 +3,16 @@ import * as BooksAPI from './BooksAPI'
 import PropTypes from 'prop-types'
 
 class Shelf extends Component {
+    state = {
+        
+    }
+
+    static propTypes = {
+        currentlyReading: PropTypes.array.isRequired,
+        wantToRead: PropTypes.array.isRequired,
+        read: PropTypes.array.isRequired
+    }
+
     render() {
         return (
             <div>
