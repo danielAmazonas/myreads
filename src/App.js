@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Search from './Search'
-import Shelf from './Shelf'
+import ListBooks from './ListBooks'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './App.css'
 import PropTypes from 'prop-types'
@@ -12,21 +12,7 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" render={() => (
-              <div className="list-books">
-                <div className="list-books-title">
-                  <h1>MyReads</h1>
-                </div>
-                <div className="list-books-content">
-                  <div>
-                    <Shelf currentlyReading={() => ({})} />
-                    {/*<Shelf wantToRead={() => ({})} />
-                    <Shelf read={() => ({})} />*/}
-                  </div>
-                </div>
-                <div className="open-search">
-                  <Link to='/search'>Add a book</Link>
-                </div>
-              </div>
+              <ListBooks />
             )} />
             <Route path="/search" render={() => (
               <Search />

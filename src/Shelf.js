@@ -7,12 +7,6 @@ class Shelf extends Component {
         
     }
 
-    static propTypes = {
-        currentlyReading: PropTypes.array.isRequired,
-        wantToRead: PropTypes.array.isRequired,
-        read: PropTypes.array.isRequired
-    }
-
     render() {
         return (
             <div>
