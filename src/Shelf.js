@@ -3,8 +3,12 @@ import * as BooksAPI from './BooksAPI'
 import PropTypes from 'prop-types'
 
 class Shelf extends Component {
-    state = {
+    static propTypes = {
         
+    }
+
+    state = {
+
     }
 
     render() {

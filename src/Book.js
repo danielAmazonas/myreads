@@ -8,12 +8,12 @@ class Book extends Component {
     render() {
         const { book } = this.props
 
-        const thumb = book.in('img')
+        const smallThumbnail = book.in('imageLinks')
 
-        if (thumb)
-            thumb = book.img.thumb
+        if (smallThumbnail)
+            smallThumbnail = book.img.smallThumbnail
         else
-            thumb = ''
+            smallThumbnail = ''
 
         return (
             <div className="book">
@@ -31,8 +31,8 @@ class Book extends Component {
                         </select>
                     </div>
                 </div>
-                <div className="book-title">To Kill a Mockingbird</div>
-                <div className="book-authors">Harper Lee</div>
+                <div className="book-title">{book.title}</div>
+                <div className="book-authors">{book.authors}</div>
             </div>
         )
     }
