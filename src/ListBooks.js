@@ -13,13 +13,6 @@ class ListBooks extends Component {
         books: []
     }
 
-    componentDidMount() {
-        BooksAPI.getAll().then((books) => {
-            this.setState({ books })
-            console.log(books)
-        })
-    }
-
     render() {
         return (
             <div className="list-books">
