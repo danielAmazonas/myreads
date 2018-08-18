@@ -21,9 +21,7 @@ class ListBooks extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <Shelf currentlyReading={() => ({})} />
-                        {/*<Shelf wantToRead={() => ({})} />
-                        <Shelf read={() => ({})} />*/}
+                        <Shelf />
                     </div>
                 </div>
                 <div className="open-search">
