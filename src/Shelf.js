@@ -1,42 +1,42 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 import Book from './Book'
-import PropTypes from 'prop-types'
 
 class Shelf extends Component {
-    static propTypes = {
-        
-    }
-
+    
     state = {
         currentlyReadingState: [
             {
                 'id': 'nggnmAEACAAJ',
+                'type': 'currentlyReading'
             },
             {
                 'id': 'IOejDAAAQBAJ',
+                'type': 'currentlyReading'
             }
         ],
         wantToReadState: [
             {
-                'id': 'sJf1vQAACAAJ'
+                'id': 'sJf1vQAACAAJ',
+                'type': 'wantToRead'
             },
             {
-                'id': '74XNzF_al3MC'
+                'id': '74XNzF_al3MC',
+                'type': 'wantToRead'
             }
         ],
         readState: [
             {
-                'id': 'evuwdDLfAyYC'
+                'id': 'evuwdDLfAyYC',
+                'type': 'read'
             },
             {
-                'id': 'jAUODAAAQBAJ'
+                'id': 'jAUODAAAQBAJ',
+                'type': 'read'
             }
         ]
     }
 
     render() {
-        const { currentlyReading, wantToRead, read } = this.props
         const { currentlyReadingState, wantToReadState, readState } = this.state
 
         return (

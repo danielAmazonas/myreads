@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Shelf from './Shelf'
 import { Link } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
 import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
