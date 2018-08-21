@@ -23,6 +23,8 @@ class Book extends Component {
         let status
         const mark = '✓'
 
+        console.log(shelf)
+
         return (
             <ol className="books-grid">
                 {books.filter((book) => shelf.filter((s) => status = s.type).map((c) => c.id).includes(book.id)).map((book) => (
@@ -31,26 +33,32 @@ class Book extends Component {
                             <div className="book-top">
                                 <div
                                     className="book-cover"
-                                    style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.smallThumbnail})` }}></div>
+                                    style={{
+                                        width: 128,
+                                        height: 193,
+                                        backgroundImage: `url(${book.hasOwnProperty('imageLinks') ?
+                                            book.imageLinks.smallThumbnail :
+                                            ''})`
+                                    }}></div>
                                 <div className="book-shelf-changer">
-                                    <select>
+                                    <select value={status}>
                                         <option
                                             value="move"
                                             disabled>Move to...</option>
                                         <option
                                             value="currentlyReading"
-                                            selected={status === 'currentlyReading' ? 'selected': ''}>
-                                            {status === 'currentlyReading' ? mark: ' '}
+                                            selected={status === 'currentlyReading' ? 'selected' : ''}>
+                                            {status === 'currentlyReading' ? mark : ''}
                                             Currently Reading</option>
                                         <option
                                             value="wantToRead"
-                                            selected={status === 'wantToRead' ? 'selected': ''}>
-                                            {status === 'wantToRead' ? mark: ' '}
+                                            selected={status === 'wantToRead' ? 'selected' : ''}>
+                                            {status === 'wantToRead' ? mark : ''}
                                             Want to Read</option>
                                         <option
                                             value="read"
-                                            selected={status === 'read' ? 'selected': ''}>
-                                            {status === 'read' ? mark: ' '}
+                                            selected={status === 'read' ? 'selected' : ''}>
+                                            {status === 'read' ? mark : ''}
                                             Read</option>
                                         <option
                                             value="none">None</option>
