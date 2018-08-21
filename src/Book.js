@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
     static propTypes = {
@@ -13,16 +12,15 @@ class Book extends Component {
     }
 
     render() {
-        const { book } = this.state
+        const { book } = this.props
         let status
         const mark = '✓'
 
         return (
-
-            <div className="book">
-                <div className="book-top">
+            <div className='book'>
+                <div className='book-top'>
                     <div
-                        className="book-cover"
+                        className='book-cover'
                         style={{
                             width: 128,
                             height: 193,
@@ -30,29 +28,35 @@ class Book extends Component {
                                 book.imageLinks.smallThumbnail :
                                 ''})`
                         }}></div>
-                    <div className="book-shelf-changer">
+                    <div className='book-shelf-changer'>
                         <select
                             value={book.shelf}
                             onChange={(event) => this.changeShelf(event)}>
                             <option
-                                value="move"
+                                value='move'
                                 disabled>Move to...</option>
                             <option
-                                value="currentlyReading">Currently Reading</option>
+                                value='currentlyReading'>
+                                {book.shelf === 'currentlyReading' ? mark : ''}
+                                Currently Reading</option>
                             <option
-                                value="wantToRead">Want to Read</option>
+                                value='wantToRead'>
+                                {book.shelf === 'wantToRead' ? mark : ''}
+                                Want to Read</option>
                             <option
-                                value="read">Read</option>
+                                value='read'>
+                                {book.shelf === 'read' ? mark : ''}
+                                Read</option>
                             <option
-                                value="none">None</option>
+                                value='none'>None</option>
                         </select>
                     </div>
                 </div>
-                <div className="book-title">
+                <div className='book-title'>
                     {book.title}
                 </div>
                 {book.authors ? book.authors.map((author) =>
-                    <div key={`${author}-${book.id}`} className="book-authors">
+                    <div key={`${author}-${book.id}`} className='book-authors'>
                         {author}
                     </div>
                 ) : ''}

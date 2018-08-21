@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
     static propTypes = {
-        currentlyReading: PropTypes.object.isRequired,
-        wantToRead: PropTypes.object.isRequired,
-        read: PropTypes.object.isRequired,
+        currentlyReading: PropTypes.array.isRequired,
+        wantToRead: PropTypes.array.isRequired,
+        read: PropTypes.array.isRequired,
         onChanged: PropTypes.func.isRequired
     }
 
