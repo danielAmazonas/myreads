@@ -14,8 +14,9 @@ class Search extends Component {
 
     updateQuery = (query) => {
         this.setState({ query: query.trim() })
-        if (query === '')
-            return this.clearShowingBooks
+        if (query === '') {
+            this.clearShowingBooks
+        }
         this.search(query)
     }
 
@@ -35,7 +36,6 @@ class Search extends Component {
 
     render() {
         const { showingBooks, query } = this.state
-        console.log(showingBooks)
 
         return (
             <div className="search-books">
@@ -71,20 +71,11 @@ class Search extends Component {
                                                     value="move"
                                                     disabled>Move to...</option>
                                                 <option
-                                                    value="currentlyReading"
-                                                >
-
-                                                    Currently Reading</option>
+                                                    value="currentlyReading">Currently Reading</option>
                                                 <option
-                                                    value="wantToRead"
-                                                >
-
-                                                    Want to Read</option>
+                                                    value="wantToRead">Want to Read</option>
                                                 <option
-                                                    value="read"
-                                                >
-
-                                                    Read</option>
+                                                    value="read">Read</option>
                                                 <option
                                                     value="none">None</option>
                                             </select>

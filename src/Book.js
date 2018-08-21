@@ -23,8 +23,6 @@ class Book extends Component {
         let status
         const mark = '✓'
 
-        console.log(shelf)
-
         return (
             <ol className="books-grid">
                 {books.filter((book) => shelf.filter((s) => status = s.type).map((c) => c.id).includes(book.id)).map((book) => (

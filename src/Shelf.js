@@ -1,62 +1,42 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import PropTypes from 'prop-types'
+import * as BooksAPI from './BooksAPI'
 
 class Shelf extends Component {
-    
-    state = {
-        currentlyReadingState: [
-            {
-                'id': 'nggnmAEACAAJ',
-                'type': 'currentlyReading'
-            },
-            {
-                'id': 'IOejDAAAQBAJ',
-                'type': 'currentlyReading'
-            }
-        ],
-        wantToReadState: [
-            {
-                'id': 'sJf1vQAACAAJ',
-                'type': 'wantToRead'
-            },
-            {
-                'id': '74XNzF_al3MC',
-                'type': 'wantToRead'
-            }
-        ],
-        readState: [
-            {
-                'id': 'evuwdDLfAyYC',
-                'type': 'read'
-            },
-            {
-                'id': 'jAUODAAAQBAJ',
-                'type': 'read'
-            }
-        ]
+    static propTypes = {
+        shelf: PropTypes.string.isRequired,
+        books: PropTypes.array.isRequired,
+        onChanged: PropTypes.func.isRequired
+    }
+
+    changeShelf = (book, newShelf) => {
+        BooksAPI.update(book, newShelf)
     }
 
     render() {
-        const { currentlyReadingState, wantToReadState, readState } = this.state
+        const { shelf, books } = this.props
+
+        let listBook
 
         return (
             <div>
                 <div className="bookshelf">
-                    <h2 className="bookshelf-title">Currently Reading</h2>
-                    <div className="bookshelf-books">
-                        <Book shelf={currentlyReadingState} />
-                    </div>
-                </div>
-                <div className="bookshelf">
-                    <h2 className="bookshelf-title">Want to Read</h2>
-                    <div className="bookshelf-books">
-                        <Book shelf={wantToReadState} />
-                    </div>
-                </div>
-                <div className="bookshelf">
-                    <h2 className="bookshelf-title">Read</h2>
-                    <div className="bookshelf-books">
-                        <Book shelf={readState} />
+                    <h2 className="bookshelf-title">
+                        {shelf}
+                    </h2>
+                    <div className='bookshelf-books'>
+                        <ol className="books-grid">
+                            {books.length === 0 ?
+                                listBook = (
+                                    <li key='0'>
+                                        <p>No Books</p>
+                                    </li>) :
+                                listBook = books.map((book) =>
+                                    <li key={book.id}>
+                                        <Book book={book} onChanged={this.changeShelf} />
+                                    </li>)}
+                        </ol>
                     </div>
                 </div>
             </div>
