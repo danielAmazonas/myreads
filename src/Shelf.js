@@ -21,12 +21,12 @@ class Shelf extends Component {
 
         return (
             <div>
-                <div className="bookshelf">
-                    <h2 className="bookshelf-title">
-                        {shelf}
+                <div className='bookshelf'>
+                    <h2 className='bookshelf-title'>
+                        {shelf} - <span>Amt </span>{books.length}
                     </h2>
                     <div className='bookshelf-books'>
-                        <ol className="books-grid">
+                        <ol className='books-grid'>
                             {books.length === 0 ?
                                 listBook = (
                                     <li key='0'>

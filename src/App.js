@@ -17,8 +17,15 @@ class App extends Component {
   }
 
   onChanged = (book, newShelf) => {
+    /*
+    this.setState(state => ({
+      books: state.books.concat([book])
+    }))
+    */
     BooksAPI.update(book, newShelf).then(() => {
-      //this.setState({ books })
+      this.setState(state => ({
+        books: state.books.concat([book])
+      }))
     })
   }
 
@@ -26,22 +33,25 @@ class App extends Component {
     const { books } = this.state
 
     return (
-      <div className="app">
+      <div className='app' >
         <Router>
           <div>
             <Route
               exact
-              path="/"
-              render={() => (
-              <ListBooks
-                currentlyReading={books.filter((book) => book.shelf === 'currentlyReading')}
-                wantToRead={books.filter((book) => book.shelf === 'wantToRead')}
-                read={books.filter((book) => book.shelf === 'read')}
-                
+              path='/'
+              render={({ history }) => (
+                <ListBooks
+                  currentlyReading={books.filter((book) => book.shelf === 'currentlyReading')}
+                  wantToRead={books.filter((book) => book.shelf === 'wantToRead')}
+                  read={books.filter((book) => book.shelf === 'read')}
+                  onChanged={() => {
+                    this.onChanged
+                    history.push('/')
+                  }}
                 />
-            )} />
-            <Route path="/search" render={() => (
-              <Search />
+              )} />
+            <Route path='/search' render={() => (
+              <Search onChanged={this.onChanged}/>
             )} />
           </div>
         </Router>

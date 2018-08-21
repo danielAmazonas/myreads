@@ -13,7 +13,6 @@ class Book extends Component {
 
     render() {
         const { book } = this.props
-        let status
         const mark = '✓'
 
         return (
