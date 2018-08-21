@@ -5,14 +5,18 @@ import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
     static propTypes = {
-
+        currentlyReading: PropTypes.object.isRequired,
+        wantToRead: PropTypes.object.isRequired,
+        read: PropTypes.object.isRequired,
+        onChanged: PropTypes.func.isRequired
     }
 
-    state = {
-        books: []
+    onChanged(book, newShelf) {
+        this.props.onChanged(book, newShelf)
     }
 
     render() {
+        const { currentlyReading, wantToRead, read } = this.props
         return (
             <div className="list-books">
                 <div className="list-books-title">
@@ -20,7 +24,18 @@ class ListBooks extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <Shelf />
+                        <Shelf
+                            shelf={'Currently Reading'}
+                            books={currentlyReading}
+                            onChanged={this.onChanged} />
+                        <Shelf
+                            shelf={'Want To Read'}
+                            books={wantToRead}
+                            onChanged={this.onChanged} />
+                        <Shelf
+                            shelf={'Read'}
+                            books={read}
+                            onChanged={this.onChanged} />
                     </div>
                 </div>
                 <div className="open-search">
