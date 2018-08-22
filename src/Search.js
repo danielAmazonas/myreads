@@ -6,11 +6,19 @@ import PropTypes from 'prop-types'
 
 class Search extends Component {
     state = {
-        showingBooks: []
+        showingBooks: [],
+        query: '',
+        books: []
     }
 
     static propTypes = {
         onChanged: PropTypes.func.isRequired
+    }
+
+    componentDidMount() {
+        BooksAPI.getAll().then((books) => {
+            this.setState({ books })
+        })
     }
 
     changeShelf = (book, newShelf) => {
@@ -40,8 +48,12 @@ class Search extends Component {
     }
 
     render() {
-        const { showingBooks, query } = this.state
-
+        const { showingBooks, query, books } = this.state
+        const currentlyReading = books.filter((book) => book.shelf === 'currentlyReading')
+        const wantToRead = books.filter((book) => book.shelf === 'wantToRead')
+        const read = books.filter((book) => book.shelf === 'read')
+        let mergedBooks = currentlyReading.concat(wantToRead, read)
+        
         return (
             <div className='search-books'>
                 <div className='search-books-bar'>

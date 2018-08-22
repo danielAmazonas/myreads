@@ -11,7 +11,7 @@ class ListBooks extends Component {
         onChanged: PropTypes.func.isRequired
     }
 
-    onChanged(book, newShelf) {
+    changeShelf(book, newShelf) {
         this.props.onChanged(book, newShelf)
     }
 
@@ -28,15 +28,15 @@ class ListBooks extends Component {
                         <Shelf
                             shelf={'Currently Reading'}
                             books={currentlyReading}
-                            onChanged={this.onChanged} />
+                            onChanged={this.changeShelf} />
                         <Shelf
                             shelf={'Want To Read'}
                             books={wantToRead}
-                            onChanged={this.onChanged} />
+                            onChanged={this.changeShelf} />
                         <Shelf
                             shelf={'Read'}
                             books={read}
-                            onChanged={this.onChanged} />
+                            onChanged={this.changeShelf} />
                     </div>
                 </div>
                 <div className='open-search'>

@@ -11,19 +11,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then(books => {
+    BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
 
-  onChanged = (book, newShelf) => {
+  changeShelf = (book, newShelf) => {
     /*
     this.setState(state => ({
       books: state.books.concat([book])
     }))
     */
+    
     BooksAPI.update(book, newShelf).then(() => {
-      this.setState(state => ({
+      this.setState((state) => ({
         books: state.books.concat([book])
       }))
     })
@@ -45,13 +46,13 @@ class App extends Component {
                   wantToRead={books.filter((book) => book.shelf === 'wantToRead')}
                   read={books.filter((book) => book.shelf === 'read')}
                   onChanged={() => {
-                    this.onChanged
+                    this.changeShelf
                     history.push('/')
                   }}
                 />
               )} />
             <Route path='/search' render={() => (
-              <Search onChanged={this.onChanged}/>
+              <Search onChanged={this.changeShelf}/>
             )} />
           </div>
         </Router>
