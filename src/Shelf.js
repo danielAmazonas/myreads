@@ -34,7 +34,9 @@ class Shelf extends Component {
                                     </li>) :
                                 listBook = books.map((book) =>
                                     <li key={book.id}>
-                                        <Book book={book} onChanged={this.changeShelf} />
+                                        <Book
+                                            book={book}
+                                            onChanged={this.changeShelf} />
                                     </li>)}
                         </ol>
                     </div>

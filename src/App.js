@@ -2,63 +2,57 @@ import React, { Component } from 'react'
 import Search from './Search'
 import ListBooks from './ListBooks'
 import * as BooksAPI from './BooksAPI'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
 
 class App extends Component {
-  state = {
-    books: []
-  }
+    state = {
+        books: []
+    }
 
-  componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books })
-    })
-  }
+    componentDidMount() {
+        BooksAPI.getAll().then((books) => {
+            this.setState({ books })
+        })
+    }
 
-  changeShelf = (book, newShelf) => {
-    /*
-    this.setState(state => ({
-      books: state.books.concat([book])
-    }))
-    */
-    
-    BooksAPI.update(book, newShelf).then(() => {
-      this.setState((state) => ({
-        books: state.books.concat([book])
-      }))
-    })
-  }
+    changeShelf = (book, newShelf) => {
+        book.shelf = newShelf
 
-  render() {
-    const { books } = this.state
+        BooksAPI.update(book, newShelf).then(() => {
+            console.log(book)
+            this.setState((state) => ({
+                books: state.books.filter((b) => b.id !== book.id).concat([book])
+            }))
+        })
+    }
 
-    return (
-      <div className='app' >
-        <Router>
-          <div>
-            <Route
-              exact
-              path='/'
-              render={({ history }) => (
-                <ListBooks
-                  currentlyReading={books.filter((book) => book.shelf === 'currentlyReading')}
-                  wantToRead={books.filter((book) => book.shelf === 'wantToRead')}
-                  read={books.filter((book) => book.shelf === 'read')}
-                  onChanged={() => {
-                    this.changeShelf
-                    history.push('/')
-                  }}
-                />
-              )} />
-            <Route path='/search' render={() => (
-              <Search onChanged={this.changeShelf}/>
-            )} />
-          </div>
-        </Router>
-      </div>
-    )
-  }
+    render() {
+        const { books } = this.state
+
+        return (
+            <div className='app' >
+                <Router>
+                    <div>
+                        <Route
+                            exact
+                            path='/'
+                            render={() => (
+                                <ListBooks
+                                    currentlyReading={books.filter((book) => book.shelf === 'currentlyReading')}
+                                    wantToRead={books.filter((book) => book.shelf === 'wantToRead')}
+                                    read={books.filter((book) => book.shelf === 'read')}
+                                    onChanged={this.changeShelf}
+                                />
+                            )} />
+                        <Route path='/search' render={() => (
+                            <Search onChanged={this.changeShelf} />
+                        )} />
+                    </div>
+                </Router>
+            </div>
+        )
+    }
 }
 
 export default App
