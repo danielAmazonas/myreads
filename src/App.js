@@ -28,6 +28,7 @@ class App extends Component {
     }
 
     render() {
+        //Desestruturação de objetos
         const { books } = this.state
 
         return (

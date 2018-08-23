@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Book from './Book'
 import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
+import imgBook from './icons/imgBook.png'
 
 class Shelf extends Component {
     static propTypes = {
@@ -16,15 +16,17 @@ class Shelf extends Component {
     }
 
     render() {
+        //Desestruturação de objetos
         const { shelf, books } = this.props
 
+        //Lista para montar as prateleiras
         let listBook
 
         return (
             <div>
                 <div className='bookshelf'>
                     <h2 className='bookshelf-title'>
-                        <span>Amt </span>{books.length} - {shelf}
+                        <img className='book-img' src={imgBook}></img> {shelf} - {books.length}
                     </h2>
                     <div className='bookshelf-books'>
                         <ol className='books-grid'>

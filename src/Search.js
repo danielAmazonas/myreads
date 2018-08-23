@@ -48,10 +48,15 @@ class Search extends Component {
     }
 
     render() {
+        //Desestruturação de objetos
         const { showingBooks, query, books } = this.state
+
+        //Filtro de cada prateleira
         const currentlyReading = books.filter((book) => book.shelf === 'currentlyReading')
         const wantToRead = books.filter((book) => book.shelf === 'wantToRead')
         const read = books.filter((book) => book.shelf === 'read')
+
+        //Merge das prateleiras
         let mergedBooks = currentlyReading.concat(wantToRead, read)
         
         return (

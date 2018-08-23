@@ -4,11 +4,6 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
-    constructor(props) {
-        super(props)
-        this.changeShelf = this.changeShelf.bind(this)
-    }
-
     static propTypes = {
         currentlyReading: PropTypes.array.isRequired,
         wantToRead: PropTypes.array.isRequired,
@@ -21,6 +16,7 @@ class ListBooks extends Component {
     }
 
     render() {
+        //Desestruturação de objetos
         const { currentlyReading, wantToRead, read } = this.props
         
         return (

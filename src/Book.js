@@ -12,7 +12,10 @@ class Book extends Component {
     }
 
     render() {
+        //Desestruturação de objetos
         const { book } = this.props
+
+        //Marcador
         const mark = '✓'
 
         return (
