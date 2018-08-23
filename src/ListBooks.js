@@ -11,6 +11,9 @@ class ListBooks extends Component {
         onChanged: PropTypes.func.isRequired
     }
 
+    /**
+     * @description Função de mudança de prateleira
+     */
     changeShelf = (book, newShelf) => {
         this.props.onChanged(book, newShelf)
     }

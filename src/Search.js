@@ -21,10 +21,16 @@ class Search extends Component {
         })
     }
 
+    /**
+     * @description Função de mudança de prateleira
+     */
     changeShelf = (book, newShelf) => {
         this.props.onChanged(book, newShelf)
     }
 
+    /**
+     * @description Função que atualiza o texto da consulta
+     */
     updateQuery = (query) => {
         this.setState({ query: query.trim() })
         if (query === '') {
@@ -33,6 +39,9 @@ class Search extends Component {
         this.search(query)
     }
 
+    /**
+     * @description Função de Busca
+     */
     search = (query) => {
         BooksAPI.search(query).then((showingBooks) => {
             if (showingBooks === undefined)
@@ -43,6 +52,9 @@ class Search extends Component {
         })
     }
 
+    /**
+     * @description Função que limpa a lista de livros
+     */
     clearShowingBooks = () => {
         this.setState({ showingBooks: [] })
     }

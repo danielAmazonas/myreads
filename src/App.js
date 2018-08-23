@@ -10,12 +10,18 @@ class App extends Component {
         books: []
     }
 
+    /**
+     * @description Função que busca os livros das prateleiras
+     */
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({ books })
         })
     }
 
+    /**
+     * @description Função de mudança de prateleira
+     */
     changeShelf = (book, newShelf) => {
         book.shelf = newShelf
 

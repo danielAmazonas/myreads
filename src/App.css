@@ -133,6 +133,11 @@ body, .app {
   color: #999;
 }
 
+.book-published-date {
+  font-size: 0.7em;
+  color: coral;
+}
+
 .book-top {
   position: relative;
   height: 200px;

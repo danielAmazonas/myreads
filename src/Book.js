@@ -7,6 +7,10 @@ class Book extends Component {
         onChanged: PropTypes.func.isRequired
     }
 
+    /**
+     * @description Função de mudança de prateleira
+     * @param {*} e 
+     */
     changeShelf(e) {
         this.props.onChanged(this.props.book, e)
     }
@@ -62,6 +66,9 @@ class Book extends Component {
                         {author}
                     </div>
                 ) : ''}
+                <div className='book-published-date'>
+                    <span>Published in </span>{book.publishedDate}
+                </div>
             </div>
         )
     }

@@ -10,9 +10,12 @@ class Shelf extends Component {
         onChanged: PropTypes.func.isRequired
     }
 
+    /**
+     * @description Função de mudança de prateleira
+     */
     changeShelf = (book, newShelf) => {
         this.props.onChanged(book, newShelf)
-        //BooksAPI.update(book, newShelf)
+        //BooksAPI.update(book, newShelf) <- Aqui estava o erro (¬¬)
     }
 
     render() {
@@ -26,7 +29,7 @@ class Shelf extends Component {
             <div>
                 <div className='bookshelf'>
                     <h2 className='bookshelf-title'>
-                        <img className='book-img' src={imgBook}></img> {shelf} - {books.length}
+                        <img className='book-img' src={imgBook} alt='book-img'></img> {shelf} - {books.length}
                     </h2>
                     <div className='bookshelf-books'>
                         <ol className='books-grid'>
