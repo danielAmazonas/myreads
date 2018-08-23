@@ -11,7 +11,8 @@ class Shelf extends Component {
     }
 
     changeShelf = (book, newShelf) => {
-        BooksAPI.update(book, newShelf)
+        this.props.onChanged(book, newShelf)
+        //BooksAPI.update(book, newShelf)
     }
 
     render() {
@@ -23,7 +24,7 @@ class Shelf extends Component {
             <div>
                 <div className='bookshelf'>
                     <h2 className='bookshelf-title'>
-                        {shelf} - <span>Amt </span>{books.length}
+                        <span>Amt </span>{books.length} - {shelf}
                     </h2>
                     <div className='bookshelf-books'>
                         <ol className='books-grid'>
