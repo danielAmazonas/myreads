@@ -104,7 +104,7 @@ class Search extends Component {
         })*/
 
         //temp = showingBooks.map((b) => mergedBooks.filter((m) => { b.id === m.id ? b.shelf = m.shelf : b.shelf = 'none'}))
-        
+
         //temp = mergedBooks.concat(showingBooks.filter((b) => { mergedBooks.id !== b.id }))
         //temp = mergedBooks.filter((b) => b.id !== showingBooks.map((m) => 
         //    m.id)).map((k) => merged = k.shelf).concat(merged)
@@ -127,11 +127,13 @@ class Search extends Component {
                 <div className='search-books-results'>
                     <ol className='books-grid'>
                         {showingBooks.map((book) => (
-                            <li key={book.id}>
-                                <Book
-                                    book={book}
-                                    onChanged={this.changeShelf} />
-                            </li>
+                            <div className='book-card'>
+                                <li key={book.id}>
+                                    <Book
+                                        book={book}
+                                        onChanged={this.changeShelf} />
+                                </li>
+                            </div>
                         ))}
                     </ol>
                 </div>
