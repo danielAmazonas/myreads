@@ -70,7 +70,47 @@ class Search extends Component {
 
         //Merge das prateleiras
         let mergedBooks = currentlyReading.concat(wantToRead, read)
+
+        let temp = []
+
+        /*for (let i = 0; i < showingBooks.length; i++) {
+            for (let j = 0; j < mergedBooks.length; j++) {
+                if (showingBooks[i].id === mergedBooks[j].id) {
+                    console.log(showingBooks[i].id + "  -  " + mergedBooks[j].id + "  -  " + showingBooks[i].title + "  -  " + mergedBooks[j].title + "  -  " + showingBooks[i].shelf + "  -  " + mergedBooks[j].shelf)
+                    temp[i] = showingBooks[i]
+                    temp[i].shelf = mergedBooks[j].shelf
+                    console.log(temp[i])
+                } else {
+                    //console.log(showingBooks[i].id + "  -  " + mergedBooks[j].id + "  -  " + showingBooks[i].title + "  -  " + mergedBooks[j].title + "  -  " + showingBooks[i].shelf + "  -  " + mergedBooks[j].shelf)
+                    temp[i] = showingBooks[i]
+                    temp[i].shelf = 'none'
+                }
+            }
+        }*/
+
+        /*showingBooks.forEach((book) => {
+            mergedBooks.forEach((merged) => {
+                if (book.id === merged.id) {
+                    temp = book
+                    console.log(temp.shelf + " - " + merged.shelf)
+                    temp.shelf = merged.shelf
+                    console.log(temp.shelf)
+                }
+                else {
+                    temp = book
+                    temp.shelf = 'none'
+                }
+            })
+        })*/
+
+        //temp = showingBooks.map((b) => mergedBooks.filter((m) => { b.id === m.id ? b.shelf = m.shelf : b.shelf = 'none'}))
         
+        //temp = mergedBooks.concat(showingBooks.filter((b) => { mergedBooks.id !== b.id }))
+        //temp = mergedBooks.filter((b) => b.id !== showingBooks.map((m) => 
+        //    m.id)).map((k) => merged = k.shelf).concat(merged)
+
+        console.log(temp)
+
         return (
             <div className='search-books'>
                 <div className='search-books-bar'>
