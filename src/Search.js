@@ -73,21 +73,6 @@ class Search extends Component {
 
         let temp = []
 
-        /*for (let i = 0; i < showingBooks.length; i++) {
-            for (let j = 0; j < mergedBooks.length; j++) {
-                if (showingBooks[i].id === mergedBooks[j].id) {
-                    console.log(showingBooks[i].id + "  -  " + mergedBooks[j].id + "  -  " + showingBooks[i].title + "  -  " + mergedBooks[j].title + "  -  " + showingBooks[i].shelf + "  -  " + mergedBooks[j].shelf)
-                    temp[i] = showingBooks[i]
-                    temp[i].shelf = mergedBooks[j].shelf
-                    console.log(temp[i])
-                } else {
-                    //console.log(showingBooks[i].id + "  -  " + mergedBooks[j].id + "  -  " + showingBooks[i].title + "  -  " + mergedBooks[j].title + "  -  " + showingBooks[i].shelf + "  -  " + mergedBooks[j].shelf)
-                    temp[i] = showingBooks[i]
-                    temp[i].shelf = 'none'
-                }
-            }
-        }*/
-
         /*showingBooks.forEach((book) => {
             mergedBooks.forEach((merged) => {
                 if (book.id === merged.id) {
@@ -103,7 +88,18 @@ class Search extends Component {
             })
         })*/
 
-        //temp = showingBooks.map((b) => mergedBooks.filter((m) => { b.id === m.id ? b.shelf = m.shelf : b.shelf = 'none'}))
+        //temp = showingBooks.filter((b) => mergedBooks.map((m) => { b.id === m.id ? (b.shelf = m.shelf) && (console.log(m.shelf)) : b.shelf = 'none'}))
+                    
+        //for (let i = 0; i < showingBooks.length; i++) {
+        //    for (let j = 0; j < mergedBooks.length; j++)
+        //        if (showingBooks[i].id !== mergedBooks[j].id) {
+        //            temp[j] = showingBooks[j]
+        //            temp[j].shelf = mergedBooks[j].shelf
+        //        } else {
+        //            temp[j] = showingBooks[j]
+        //            temp[j].shelf = 'none'
+        //        }
+        //}
 
         //temp = mergedBooks.concat(showingBooks.filter((b) => { mergedBooks.id !== b.id }))
         //temp = mergedBooks.filter((b) => b.id !== showingBooks.map((m) => 
@@ -127,7 +123,7 @@ class Search extends Component {
                 <div className='search-books-results'>
                     <ol className='books-grid'>
                         {showingBooks.map((book) => (
-                            <div className='book-card'>
+                            <div key={`div-${book.id}`} className='book-card'>
                                 <li key={book.id}>
                                     <Book
                                         book={book}

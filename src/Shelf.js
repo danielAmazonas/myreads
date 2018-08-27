@@ -35,14 +35,14 @@ class Shelf extends Component {
                         <ol className='books-grid'>
                             {books.length === 0 ?
                                 listBook = (
-                                    <div className='book-card'>
+                                    <div key='empty' className='book-card'>
                                         <li key='0'>
                                             <p>No Books</p>
                                         </li>
                                     </div>
                                 ) :
                                 listBook = books.map((book) =>
-                                    <div className='book-card'>
+                                    <div key={`div-${book.id}`} className='book-card'>
                                         <li key={book.id}>
                                             <Book
                                                 book={book}
