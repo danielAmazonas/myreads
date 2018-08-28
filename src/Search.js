@@ -18,6 +18,9 @@ class Search extends Component {
         onChanged: PropTypes.func.isRequired
     }
 
+    /**
+     * @description Função que busca os livros das prateleiras
+     */
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({ books })
@@ -43,7 +46,8 @@ class Search extends Component {
     }
 
     /**
-     * @description Função de Busca
+     * @description Função de Busca e comprara com os livros existentes
+     * nas prateleiras
      */
     search = (query) => {
         BooksAPI.search(query).then((showingBooks) => {
@@ -60,6 +64,7 @@ class Search extends Component {
             //Merge das prateleiras
             let mergedBooks = currentlyReading.concat(wantToRead, read)
 
+            //Variável temporária para filtrar e juntar os livros e seus estados
             let temp = []
 
             temp = showingBooks.filter((b) => b.shelf = 'none')
@@ -106,8 +111,8 @@ class Search extends Component {
                             <div key={`div-${book.id}`} className='book-card'>
                                 <li key={book.id}>
                                     <Rating
-                                        emptySymbol={<img src={starempty} className="icon" />}
-                                        fullSymbol={<img src={starfull} className="icon" />}
+                                        emptySymbol={<img src={starempty} className='icon' alt='star-empty' />}
+                                        fullSymbol={<img src={starfull} className='icon' alt='star-full' />}
                                     />
                                     <Book
                                         book={book}

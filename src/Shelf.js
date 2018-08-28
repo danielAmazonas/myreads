@@ -47,8 +47,8 @@ class Shelf extends Component {
                                 listBook = books.map((book) =>
                                     <div key={`div-${book.id}`} className='book-card'>
                                         <Rating
-                                            emptySymbol={<img src={starempty} className="icon" />}
-                                            fullSymbol={<img src={starfull} className="icon" />}
+                                            emptySymbol={<img src={starempty} className='icon' alt='star-empty' />}
+                                            fullSymbol={<img src={starfull} className='icon' alt='star-full' />}
                                         />
                                         <li key={book.id}>
                                             <Book
