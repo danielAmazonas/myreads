@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
+import Rating from 'react-rating'
 import PropTypes from 'prop-types'
+import starempty from './icons/star-empty_1.png'
+import starfull from './icons/star-full_1.png'
 
 class Search extends Component {
     state = {
@@ -32,9 +35,9 @@ class Search extends Component {
      * @description Função que atualiza o texto da consulta
      */
     updateQuery = (query) => {
-        this.setState({ query: query.trim() })
+        this.setState({ query: query })
         if (query === '') {
-            this.clearShowingBooks
+            this.clearShowingBooks()
         }
         this.search(query)
     }
@@ -45,22 +48,22 @@ class Search extends Component {
     search = (query) => {
         BooksAPI.search(query).then((showingBooks) => {
             if (showingBooks === undefined)
-                return this.clearShowingBooks
+                return this.clearShowingBooks()
             if (showingBooks.hasOwnProperty('error'))
-                return this.clearShowingBooks
+                return this.clearShowingBooks()
 
             //Filtro de cada prateleira
             const currentlyReading = this.state.books.filter((book) => book.shelf === 'currentlyReading')
             const wantToRead = this.state.books.filter((book) => book.shelf === 'wantToRead')
             const read = this.state.books.filter((book) => book.shelf === 'read')
-            
+
             //Merge das prateleiras
             let mergedBooks = currentlyReading.concat(wantToRead, read)
 
             let temp = []
 
             temp = showingBooks.filter((b) => b.shelf = 'none')
-            
+
             for (let i = 0; i < temp.length; i++) {
                 for (let j = 0; j < mergedBooks.length; j++) {
                     if (temp[i].id === mergedBooks[j].id) {
@@ -68,7 +71,7 @@ class Search extends Component {
                     }
                 }
             }
-            
+
             this.setState({ showingBooks: temp })
         })
     }
@@ -76,13 +79,13 @@ class Search extends Component {
     /**
      * @description Função que limpa a lista de livros
      */
-    clearShowingBooks = () => {
+    clearShowingBooks() {
         this.setState({ showingBooks: [] })
     }
 
     render() {
         //Desestruturação de objetos
-        const { showingBooks, query, books } = this.state
+        const { showingBooks, query } = this.state
 
         return (
             <div className='search-books'>
@@ -102,6 +105,10 @@ class Search extends Component {
                         {showingBooks.map((book) => (
                             <div key={`div-${book.id}`} className='book-card'>
                                 <li key={book.id}>
+                                    <Rating
+                                        emptySymbol={<img src={starempty} className="icon" />}
+                                        fullSymbol={<img src={starfull} className="icon" />}
+                                    />
                                     <Book
                                         book={book}
                                         onChanged={this.changeShelf} />

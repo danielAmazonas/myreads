@@ -3,8 +3,8 @@ import Book from './Book'
 import Rating from 'react-rating'
 import PropTypes from 'prop-types'
 import minibook from './icons/minibook.png'
-import starempty from './icons/star-empty.png'
-import starfull from './icons/star-full.png'
+import starempty from './icons/star-empty_1.png'
+import starfull from './icons/star-full_1.png'
 
 class Shelf extends Component {
     static propTypes = {
