@@ -48,7 +48,28 @@ class Search extends Component {
                 return this.clearShowingBooks
             if (showingBooks.hasOwnProperty('error'))
                 return this.clearShowingBooks
-            this.setState({ showingBooks })
+
+            //Filtro de cada prateleira
+            const currentlyReading = this.state.books.filter((book) => book.shelf === 'currentlyReading')
+            const wantToRead = this.state.books.filter((book) => book.shelf === 'wantToRead')
+            const read = this.state.books.filter((book) => book.shelf === 'read')
+            
+            //Merge das prateleiras
+            let mergedBooks = currentlyReading.concat(wantToRead, read)
+
+            let temp = []
+
+            temp = showingBooks.filter((b) => b.shelf = 'none')
+            
+            for (let i = 0; i < temp.length; i++) {
+                for (let j = 0; j < mergedBooks.length; j++) {
+                    if (temp[i].id === mergedBooks[j].id) {
+                        temp[i].shelf = mergedBooks[j].shelf
+                    }
+                }
+            }
+            
+            this.setState({ showingBooks: temp })
         })
     }
 
@@ -62,50 +83,6 @@ class Search extends Component {
     render() {
         //Desestruturação de objetos
         const { showingBooks, query, books } = this.state
-
-        //Filtro de cada prateleira
-        const currentlyReading = books.filter((book) => book.shelf === 'currentlyReading')
-        const wantToRead = books.filter((book) => book.shelf === 'wantToRead')
-        const read = books.filter((book) => book.shelf === 'read')
-
-        //Merge das prateleiras
-        let mergedBooks = currentlyReading.concat(wantToRead, read)
-
-        let temp = []
-
-        /*showingBooks.forEach((book) => {
-            mergedBooks.forEach((merged) => {
-                if (book.id === merged.id) {
-                    temp = book
-                    console.log(temp.shelf + " - " + merged.shelf)
-                    temp.shelf = merged.shelf
-                    console.log(temp.shelf)
-                }
-                else {
-                    temp = book
-                    temp.shelf = 'none'
-                }
-            })
-        })*/
-
-        //temp = showingBooks.filter((b) => mergedBooks.map((m) => { b.id === m.id ? (b.shelf = m.shelf) && (console.log(m.shelf)) : b.shelf = 'none'}))
-                    
-        //for (let i = 0; i < showingBooks.length; i++) {
-        //    for (let j = 0; j < mergedBooks.length; j++)
-        //        if (showingBooks[i].id !== mergedBooks[j].id) {
-        //            temp[j] = showingBooks[j]
-        //            temp[j].shelf = mergedBooks[j].shelf
-        //        } else {
-        //            temp[j] = showingBooks[j]
-        //            temp[j].shelf = 'none'
-        //        }
-        //}
-
-        //temp = mergedBooks.concat(showingBooks.filter((b) => { mergedBooks.id !== b.id }))
-        //temp = mergedBooks.filter((b) => b.id !== showingBooks.map((m) => 
-        //    m.id)).map((k) => merged = k.shelf).concat(merged)
-
-        console.log(temp)
 
         return (
             <div className='search-books'>
