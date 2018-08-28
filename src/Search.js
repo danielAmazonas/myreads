@@ -36,10 +36,10 @@ class Search extends Component {
      */
     updateQuery = (query) => {
         this.setState({ query: query })
-        if (query === '') {
+        if (query)
+            this.search(query)
+        else
             this.clearShowingBooks()
-        }
-        this.search(query)
     }
 
     /**
