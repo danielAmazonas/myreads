@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import Rating from 'react-rating'
 import PropTypes from 'prop-types'
 import minibook from './icons/minibook.png'
+import starempty from './icons/star-empty.png'
+import starfull from './icons/star-full.png'
 
 class Shelf extends Component {
     static propTypes = {
@@ -43,6 +46,10 @@ class Shelf extends Component {
                                 ) :
                                 listBook = books.map((book) =>
                                     <div key={`div-${book.id}`} className='book-card'>
+                                        <Rating
+                                            emptySymbol={<img src={starempty} className="icon" />}
+                                            fullSymbol={<img src={starfull} className="icon" />}
+                                        />
                                         <li key={book.id}>
                                             <Book
                                                 book={book}

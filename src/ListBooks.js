@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Shelf from './Shelf'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import myreads from './icons/myreads.png'
 
 class ListBooks extends Component {
     static propTypes = {
@@ -21,11 +22,11 @@ class ListBooks extends Component {
     render() {
         //Desestruturação de objetos
         const { currentlyReading, wantToRead, read } = this.props
-        
+
         return (
             <div className='list-books'>
                 <div className='list-books-title'>
-                    <h1>MyReads</h1>
+                    <img src={myreads} alt='myreads'></img>
                 </div>
                 <div className='list-books-content'>
                     <div>
